@@ -24,7 +24,7 @@ header {
     top: 40px;
     left: 50px;
     z-index: 1;
-    background-color: grey;
+    background-color: darkblue;
 }
 
 h1 {
@@ -36,7 +36,7 @@ h1 {
 
 .quote {
     padding: 0 200px;
-    font-size: 18px;
+    font-size: 22px;
     color: white;
     text-align: center;
 }
@@ -46,6 +46,35 @@ main {
     width: 80vw;
     margin: 0 auto;
     position: relative;
+    top: 100px;
     right: 20px;
-    background-color: lightgrey;
+    background-color: black;
+}
+
+.sorting {
+    width: 100%;
+    padding: 15px 50px;
+    background-color: grey;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.sort-wrapper {
+    width: 50%;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.sort-label {
+    font-size: 22px;
+}
+
+.sort-button {
+    font-size: 18px;
+    padding: 5px;
+    border: 3px solid black;
+    background-color: white;
 }
