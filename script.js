@@ -16,8 +16,27 @@ function addBookToLibrary(title, author, image, ownedStatus, readStatus) {
 }
 
 function displayBooks() {
+    const display = document.querySelector(".display-wrapper");
+    const card = documnet.createElement("div");
+    card.classList.add("card");
+    const title = document.createElement("h1");
+    title.classList.add("book-title");
+    const author = document.createElement("p");
+    author.classList.add("book-author");
+    const image = document.createElement("img");
+    image.classList.add("book-image");
+    const buttonWrapper = document.createElement("div");
+    buttonWrapper.classList.add("button-wrapper");
+    const ownedButton = document.createElement("button");
+    ownedButton.classList.add("owned-button");
+    const readButton = document.createElement("button");
+    readButton.classList.add("owned-button");
+    const removeButton = document.createAttribute("button");
+    removeButton.classList.add("remove-button");
+
     myLibrary.forEach((book) => {
         // TODO: Logic to create a book card displaying books attributes
+        
     })
 }
 
