@@ -78,3 +78,7 @@ main {
     border: 3px solid black;
     background-color: white;
 }
+
+.sort-button:hover {
+    background-color: lightslategrey;
+}
