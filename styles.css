@@ -20,7 +20,7 @@ body {
 header {
     width: 60vw;
     margin: 50px 100px 20px auto;
-    padding: 40px;
+    padding: 30px;
     background-color: rgba(0, 0, 133, 0.8);
 }
 
@@ -42,6 +42,7 @@ main {
     width: 75vw;
     margin-left: 200px;
     background-color: black;
+    border: 7px solid grey;
 }
 
 .sorting {
