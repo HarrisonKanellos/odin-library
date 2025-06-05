@@ -19,7 +19,7 @@ body {
 
 header {
     width: 60vw;
-    margin: 50px 40px 20px auto;
+    margin: 50px 100px 20px auto;
     padding: 40px;
     background-color: rgba(0, 0, 133, 0.8);
 }
@@ -39,8 +39,8 @@ h1 {
 }
 
 main {
-    width: 90vw;
-    margin: 0 auto;
+    width: 75vw;
+    margin-left: 200px;
     background-color: black;
 }
 
