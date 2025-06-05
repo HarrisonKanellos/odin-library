@@ -16,17 +16,25 @@ function addBookToLibrary(title, author, image, ownedStatus, readStatus) {
 }
 
 function updateOwnedStatus(book, ownedButton) {
-    if (book.ownedStatus)
+    if (book.ownedStatus) {
         ownedButton.textContent = "owned";
-    else
+        ownedButton.classList.add("owned");
+    }
+    else {
         ownedButton.textContent = "unowned";
+        ownedButton.classList.add("unowned");
+    }
 }
 
 function updateReadStatus(book, readButton) {
-    if (book.readStatus)
+    if (book.readStatus) {
         readButton.textContent = "read";
-    else
+        readButton.classList.add("read");
+    }
+    else {
         readButton.textContent = "unread";
+        readButton.classList.add("unread");
+    }
 }
 
 function displayBooks() {

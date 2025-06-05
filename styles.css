@@ -78,7 +78,6 @@ main {
     background-color: lightslategrey;
 }
 
-/* Cards */
 .display {
     padding: 30px 150px;
     display: grid;
@@ -91,7 +90,7 @@ main {
 
 .card {
     height: 320px;
-    border: 7px solid rgb(0, 0, 163);
+    border: 7px solid darkgrey;
     background-color: white;
     padding: 8px 20px;
 
@@ -107,6 +106,10 @@ main {
     font-size: 30px;
 }
 
+.book-author {
+    font-size: 20px
+}
+
 .book-image {
     height: 180px;
 }
@@ -115,24 +118,48 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .button-wrapper button {
+    color: white;
     font-size: 18px;
     font-weight: bold;
-    border: 3px solid black;
+    border: none;
     background-color: white;
     padding: 5px 10px;
 }
 
+.button-wrapper .owned {
+    background-color: olivedrab;
+}
+
+.button-wrapper .unowned {
+    background-color: lightslategrey;
+}
+
+.button-wrapper .read {
+    background-color: olivedrab;
+}
+
+.button-wrapper .unread {
+    background-color: lightslategrey;
+}
+
 .button-wrapper .remove-button {
-    max-height: 40px;
+    background-color: black;
     border: none;
+    padding: 5px;
+}
+
+.remove-button:hover,
+.remove-button:active {
+    background-color: red;
+
 }
 
 #add-book {
-    border: 7px solid white;
+    border: 7px solid darkgrey;
     background-color: transparent;
     display: flex;
     justify-content: center;
