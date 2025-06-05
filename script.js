@@ -15,6 +15,20 @@ function addBookToLibrary(title, author, image, ownedStatus, readStatus) {
     myLibrary.push(book);
 }
 
+function updateOwnedStatus(book, ownedButton) {
+    if (book.ownedStatus)
+        ownedButton.textContent = "owned";
+    else
+        ownedButton.textContent = "unowned";
+}
+
+function updateReadStatus(book, readButton) {
+    if (book.readStatus)
+        readButton.textContent = "read";
+    else
+        readButton.textContent = "unread";
+}
+
 function displayBooks() {
     const display = document.querySelector(".display");
     const addBookCard = document.querySelector("#add-book");
@@ -47,14 +61,9 @@ function displayBooks() {
         card.appendChild(author);
         card.appendChild(image);
 
-        if (book.ownedStatus)
-            ownedButton.textContent = "owned";
-        else
-            ownedButton.textContent = "unowned";
-        if (book.readStatus)
-            readButton.textContent = "read";
-        else
-            readButton.textContent = "unread";
+        updateOwnedStatus(book, ownedButton);
+        updateReadStatus(book, readButton);
+
         removeIcon.setAttribute("src", "icons/remove-icon.svg");
         removeButton.appendChild(removeIcon);
 
