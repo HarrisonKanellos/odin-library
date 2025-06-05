@@ -16,7 +16,7 @@ function addBookToLibrary(title, author, image, ownedStatus, readStatus) {
 }
 
 function displayBooks() {
-    const display = document.querySelector(".display-wrapper");
+    const display = document.querySelector(".display");
     const card = documnet.createElement("div");
     card.classList.add("card");
     const title = document.createElement("h1");
@@ -41,15 +41,15 @@ function displayBooks() {
 }
 
 function populateMyLibrary() {
-    addBookToLibrary("12 Rules for Life", "Jordan B. Peterson", "img", true, true);
-    addBookToLibrary("The Power of Now", "Eckhart Tolle", "img", true, false);
-    addBookToLibrary("Digital Minimalism", "Cal Newport", "img", true, true);
-    addBookToLibrary("1984", "George Orwell", "img", true, false);
-    addBookToLibrary("Mastery", "Robert Greene", "image", true, false);
-    addBookToLibrary("Frankenstein", "Mary Shelley", "image", true, true);
-    addBookToLibrary("Basic Economics", "Thomas Sowell", "image", true, false);
-    addBookToLibrary("Twelve and a Half", "Gary Vaynerchuk", "image", true, false);
-    addBookToLibrary("The Art of War", "Sun Tzu", "image", true, false);
-    addBookToLibrary("Slow Productivity", "Cal Newport", "image", true, false);
-    addBookToLibrary("Beyond Order", "Jordan B. Peterson", "image", true, false);
+    addBookToLibrary("12 Rules for Life", "Jordan B. Peterson", "images/12-rules-for-life.jpg", true, true);
+    addBookToLibrary("The Power of Now", "Eckhart Tolle", "images/the-power-of-now.jpeg", true, false);
+    addBookToLibrary("Digital Minimalism", "Cal Newport", "images/digital-minimalism.jpg", true, true);
+    addBookToLibrary("1984", "George Orwell", "images/1984.jpg", true, false);
+    addBookToLibrary("Mastery", "Robert Greene", "images/mastery.jpg", true, false);
+    addBookToLibrary("Frankenstein", "Mary Shelley", "images/frankenstein.jpg", true, true);
+    addBookToLibrary("Basic Economics", "Thomas Sowell", "images/basic-economics.jpg", true, false);
+    addBookToLibrary("Twelve and a Half", "Gary Vaynerchuk", "images/twelve-and-a-half.jpg", true, false);
+    addBookToLibrary("The Art of War", "Sun Tzu", "images/the-art-of-war.jpg", true, false);
+    addBookToLibrary("Slow Productivity", "Cal Newport", "images/slow-productivity.jpg", true, false);
+    addBookToLibrary("Beyond Order", "Jordan B. Peterson", "images/beyond-order.jpg", true, false);
 }
