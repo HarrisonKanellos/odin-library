@@ -147,9 +147,10 @@ main {
 }
 
 .button-wrapper .remove-button {
+    max-height: 30px;
     background-color: black;
     border: none;
-    padding: 5px;
+    padding: 2px 3px 0;
 }
 
 .remove-button:hover,
