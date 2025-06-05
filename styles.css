@@ -68,7 +68,8 @@ main {
 
 .sort-button {
     font-size: 18px;
-    padding: 5px;
+    font-weight: bold;
+    padding: 5px 10px;
     border: 3px solid black;
     background-color: white;
 }
@@ -90,8 +91,44 @@ main {
 
 .card {
     height: 320px;
-    background-color: white;
     border: 7px solid rgb(0, 0, 163);
+    background-color: white;
+    padding: 8px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.book-title {
+    color: black;
+    font-size: 30px;
+}
+
+.book-image {
+    height: 180px;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.button-wrapper button {
+    font-size: 18px;
+    font-weight: bold;
+    border: 3px solid black;
+    background-color: white;
+    padding: 5px 10px;
+}
+
+.button-wrapper .remove-button {
+    max-height: 40px;
+    border: none;
 }
 
 #add-book {
@@ -113,8 +150,4 @@ main {
     color: white;
     font-size: 32px;
     font-weight: bold;
-}
-
-.book-image {
-    height: 150px;
 }
