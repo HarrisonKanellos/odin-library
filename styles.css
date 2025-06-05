@@ -87,5 +87,22 @@ main {
 
 .card {
     height: 320px;
-    background-color: lightgrey;
+    background-color: white;
+    border: 7px solid rgb(0, 0, 163);
+}
+
+#add-book {
+    border: 7px solid grey;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-text {
+    color: grey;
+    font-size: 32px;
+    font-weight: bold;
 }
