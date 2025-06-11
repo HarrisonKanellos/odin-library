@@ -15,6 +15,7 @@ function addBookToLibrary(title, author, image, ownedStatus, readStatus) {
     myLibrary.push(book);
 }
 
+// Sets text and color based on owned status
 function updateOwnedStatus(book, ownedButton) {
     if (book.ownedStatus) {
         ownedButton.textContent = "owned";
@@ -26,6 +27,7 @@ function updateOwnedStatus(book, ownedButton) {
     }
 }
 
+// Sets text and color based on read status
 function updateReadStatus(book, readButton) {
     if (book.readStatus) {
         readButton.textContent = "read";
@@ -37,10 +39,12 @@ function updateReadStatus(book, readButton) {
     }
 }
 
+// Iterate through each book object to display card to DOM
 function displayBooks() {
     const display = document.querySelector(".display");
     const addBookCard = document.querySelector("#add-book");
     myLibrary.forEach((book) => {
+        // Create DOM elements for card
         const card = document.createElement("div");
         card.classList.add("card");
         const title = document.createElement("h2");
@@ -59,16 +63,23 @@ function displayBooks() {
         removeButton.classList.add("remove-button");
         const removeIcon = document.createElement("img");
         removeIcon.classList.add("remove-icon");
-        //TODO: add data-attribute for remove functionality 
+
+        // Add id data attribute
+        card.dataset.id = book.id;
+        removeButton.dataset.id = book.id;
+
+        // Set content for card elements
         title.textContent = book.title.toLowerCase();
         author.textContent = `by ${book.author}`;
         image.setAttribute("src", book.image);
         image.setAttribute("alt", book.title);
 
+        // Add elements to card
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(image);
 
+        // Setup buttons
         updateOwnedStatus(book, ownedButton);
         updateReadStatus(book, readButton);
 
@@ -80,7 +91,25 @@ function displayBooks() {
         buttonWrapper.appendChild(removeButton);
         card.appendChild(buttonWrapper);
 
+        // Add card to display
         display.insertBefore(card, addBookCard);
+    })
+}
+
+function createListeners() {
+    const display = document.querySelector(".display");
+    display.addEventListener("click", (event) => {
+        const removeButton = event.target.closest(".remove-button");
+        if (removeButton) {
+            let id = removeButton.dataset.id;
+            let card = document.querySelector(`.card[data-id="${id}"]`)
+            display.removeChild(card);
+        }
+
+        const addButton = event.target.closest("#add-book");
+        if (addButton) {
+            
+        }
     })
 }
 
@@ -100,3 +129,4 @@ function populateMyLibrary() {
 
 populateMyLibrary();
 displayBooks();
+createListeners();
