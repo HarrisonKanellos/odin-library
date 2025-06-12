@@ -34,5 +34,28 @@
                 </div>
             </div>
         </main>
+        <dialog id="add-dialog">
+            <h2 class="add-book-title">add a book</h2>
+            <form formtype="dialog" id="add-book-form">
+                <fieldset class="text-inputs">
+                    <label for="book-name">book name</label>
+                    <input type="text" name="book-name" id="book-name" autofocus/>
+                    <label for="author">author</label>
+                    <input type="text" name="author" id="author" />
+                    <label for="image-file">image</label>
+                    <input type="file" name="image-file" id="image-file" accept="image/png, image/jpg image/jpeg" />
+                </fieldset>
+                <fieldset class="checkox-inputs">
+                    <input type="checkbox" name="owned-status" id="owned-status" />
+                    <label for="owned-status">owned</label>
+                    <input type="checkbox" name="read-status" id="read-status" />
+                    <label for="read-status">read</label>
+                </fieldset>
+                <div class="form-button-wrapper">
+                    <button type="button" formmethod="dialog" class="form-button cancel-button">cancel</button>
+                    <button type="submit" formmethod="dialog" class="form-button add-button">add</button>
+                </div>
+            </form>
+        </dialog>
     </body>
 </html>
