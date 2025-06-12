@@ -56,9 +56,9 @@ function displayBooks() {
         const buttonWrapper = document.createElement("div");
         buttonWrapper.classList.add("button-wrapper");
         const ownedButton = document.createElement("button");
-        ownedButton.classList.add("owned-button");
+        ownedButton.classList.add("toggle-button", "owned-button");
         const readButton = document.createElement("button");
-        readButton.classList.add("owned-button");
+        readButton.classList.add("toggle-button", "read-button");
         const removeButton = document.createElement("button");
         removeButton.classList.add("remove-button");
         const removeIcon = document.createElement("img");

@@ -181,6 +181,18 @@ main {
     font-weight: bold;
 }
 
+.sort-button,
+.toggle-button,
+.remove-button,
+#add-book,
+.add-icon,
+.add-text,
+input[type="checkbox"],
+.cancel-button,
+.add-button {
+    cursor: pointer;
+}
+
 /* Dialog styling */
 #add-dialog {
     margin: 0;
