@@ -251,10 +251,37 @@ input[type="file"] {
 
 .checkbox-label {
     font-size: 30px;
+    
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 15px;
 }
 
 input[type="checkbox"] {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
 
+    font: inherit;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    box-shadow: inset 1em 1em darkblue;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
 }
 
 label[for="owned-status"] {
