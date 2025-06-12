@@ -108,10 +108,13 @@ function createListeners() {
 
         const addButton = event.target.closest("#add-book");
         if (addButton) {
-            
+            const addDialog = document.querySelector("#add-dialog");
+            addDialog.showModal();
         }
     })
 }
+
+
 
 function populateMyLibrary() {
     addBookToLibrary("12 Rules for Life", "Jordan B. Peterson", "images/12-rules-for-life.jpg", true, true);

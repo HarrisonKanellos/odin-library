@@ -197,7 +197,7 @@ dialog::backdrop {
     background: rgba(92, 92, 92, 0.5)
 }
 
-#add-dialog,
+.dialog-content,
 #add-book-form,
 .text-inputs {
     display: flex;
