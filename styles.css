@@ -13,7 +13,7 @@ body {
     overflow: hidden;
 
     background-image: url("images/rain_background.jpg");
-    background-size: 100vw 100vh;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -179,4 +179,118 @@ main {
     color: white;
     font-size: 32px;
     font-weight: bold;
+}
+
+/* Dialog styling */
+#add-dialog {
+    margin: 0;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 14%;
+    width: 30vw;
+
+    border: 7px solid grey;
+    padding: 75px 100px;
+}
+
+dialog::backdrop {
+    background: rgba(92, 92, 92, 0.5)
+}
+
+#add-dialog,
+#add-book-form,
+.text-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#add-book-form {
+    gap: 50px;
+}
+
+.checkbox-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.add-book-title {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    font-size: 30px;
+}
+
+fieldset {
+    border: none;
+}
+
+input[type="text"] {
+    font-size: 22px;
+    padding: 8px;
+    border: 3px solid black;
+    outline: none;
+
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+input[type="file"] {
+    font-size: 22px;
+}
+
+.checkbox-inputs-text {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.checkbox-label {
+    font-size: 30px;
+}
+
+input[type="checkbox"] {
+
+}
+
+label[for="owned-status"] {
+    margin-right: 50px;
+}
+
+.form-button-wrapper {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+}
+
+.form-button {
+    background-color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 10px 25px;
+    border: 5px solid black;
+}
+
+.cancel-button {
+    background-color: lightgrey;
+}
+
+.cancel-button:hover,
+.cancel-button:active {
+    background-color: rgb(202, 54, 0);
+    color: white;
+}
+
+.add-button {
+    background-color: lightgrey;
+}
+
+.add-button:hover,
+.add-button:active {
+    background-color: olivedrab;
+    color: white;
 }
