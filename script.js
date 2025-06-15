@@ -101,19 +101,108 @@ function createListeners() {
     display.addEventListener("click", (event) => {
         const removeButton = event.target.closest(".remove-button");
         if (removeButton) {
-            let id = removeButton.dataset.id;
-            let card = document.querySelector(`.card[data-id="${id}"]`)
-            display.removeChild(card);
+            handleRemove(display, removeButton);
         }
 
         const addButton = event.target.closest("#add-book");
         if (addButton) {
-            const addDialog = document.querySelector("#add-dialog");
-            addDialog.showModal();
+            handleAdd();
         }
     })
 }
 
+function handleRemove(display, removeButton) {
+    const id = removeButton.dataset.id;
+    const card = document.querySelector(`.card[data-id="${id}"]`)
+    display.removeChild(card);
+}
+
+function handleAdd() {
+    const addDialog = document.querySelector("#add-dialog");
+    const buttonWrapper = document.querySelector(".form-button-wrapper");
+
+    addDialog.showModal();
+
+    buttonWrapper.addEventListener("click", (event) => {
+        const id = event.target.getAttribute("id");
+        if (id === "cancel-button") {
+            addDialog.close();
+        }
+
+        else if (id === "add-button") {
+            event.preventDefault();
+            handleAddNewBook();
+        }
+    })
+}
+
+function handleAddNewBook() {
+    const bookName = document.querySelector("#book-name").value;
+    const author = document.querySelector("#author").value;
+    const imageObj = document.querySelector("#image-file").files[0];
+    const image = URL.createObjectURL(imageObj);
+    const ownedStatus = document.querySelector("#owned-status").checked;
+    const readStatus = document.querySelector("#read-status").checked;
+
+    addBookToLibrary(bookName, author, image, ownedStatus, readStatus);
+    displayNewBook();
+}
+
+function displayNewBook() {
+    const newBook = myLibrary.at(-1);
+
+    const display = document.querySelector(".display");
+    const addBookCard = document.querySelector("#add-book");
+
+    const card = document.createElement("div");
+    card.classList.add("card");
+    const title = document.createElement("h2");
+    title.classList.add("book-title");
+    const author = document.createElement("p");
+    author.classList.add("book-author");
+    const image = document.createElement("img");
+    image.classList.add("book-image");
+    const buttonWrapper = document.createElement("div");
+    buttonWrapper.classList.add("button-wrapper");
+    const ownedButton = document.createElement("button");
+    ownedButton.classList.add("toggle-button", "owned-button");
+    const readButton = document.createElement("button");
+    readButton.classList.add("toggle-button", "read-button");
+    const removeButton = document.createElement("button");
+    removeButton.classList.add("remove-button");
+    const removeIcon = document.createElement("img");
+    removeIcon.classList.add("remove-icon");
+
+    // Add id data attribute
+    card.dataset.id = newBook.id;
+    removeButton.dataset.id = newBook.id;
+
+    // Set content for card elements
+    title.textContent = newBook.title.toLowerCase();
+    author.textContent = `by ${newBook.author}`;
+    image.setAttribute("src", newBook.image);
+    image.setAttribute("alt", newBook.title);
+
+    // Add elements to card
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(image);
+
+    // Setup buttons
+    updateOwnedStatus(newBook, ownedButton);
+    updateReadStatus(newBook, readButton);
+
+    removeIcon.setAttribute("src", "icons/remove-icon.svg");
+    removeButton.appendChild(removeIcon);
+
+    buttonWrapper.appendChild(ownedButton);
+    buttonWrapper.appendChild(readButton);
+    buttonWrapper.appendChild(removeButton);
+    card.appendChild(buttonWrapper);
+
+    // Add card to display
+    display.insertBefore(card, addBookCard);
+}
 
 
 function populateMyLibrary() {

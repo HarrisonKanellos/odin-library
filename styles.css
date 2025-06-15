@@ -188,8 +188,8 @@ main {
 .add-icon,
 .add-text,
 input[type="checkbox"],
-.cancel-button,
-.add-button {
+#cancel-button,
+#add-button {
     cursor: pointer;
 }
 
@@ -314,22 +314,22 @@ label[for="owned-status"] {
     border: 5px solid black;
 }
 
-.cancel-button {
+#cancel-button {
     background-color: lightgrey;
 }
 
-.cancel-button:hover,
-.cancel-button:active {
+#cancel-button:hover,
+#cancel-button:active {
     background-color: rgb(202, 54, 0);
     color: white;
 }
 
-.add-button {
+#add-button {
     background-color: lightgrey;
 }
 
-.add-button:hover,
-.add-button:active {
+#add-button:hover,
+#add-button:active {
     background-color: olivedrab;
     color: white;
 }
