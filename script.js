@@ -137,8 +137,10 @@ function handleAdd() {
 }
 
 function handleAddNewBook() {
-    const bookName = document.querySelector("#book-name").value;
-    const author = document.querySelector("#author").value;
+    const bookInput = document.querySelector("#book-name").value;
+    const bookName = bookInput.toLowerCase();
+    const authorInput = document.querySelector("#author").value;
+    const author = capitalizeAuthor(authorInput);
     const imageObj = document.querySelector("#image-file").files[0];
     const image = URL.createObjectURL(imageObj);
     const ownedStatus = document.querySelector("#owned-status").checked;
@@ -178,7 +180,7 @@ function displayNewBook() {
     removeButton.dataset.id = newBook.id;
 
     // Set content for card elements
-    title.textContent = newBook.title.toLowerCase();
+    title.textContent = newBook.title;
     author.textContent = `by ${newBook.author}`;
     image.setAttribute("src", newBook.image);
     image.setAttribute("alt", newBook.title);
@@ -204,6 +206,11 @@ function displayNewBook() {
     display.insertBefore(card, addBookCard);
 }
 
+function capitalizeAuthor(author) {
+    return author.split(" ")
+                .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
+                .join(" ");
+}
 
 function populateMyLibrary() {
     addBookToLibrary("12 Rules for Life", "Jordan B. Peterson", "images/12-rules-for-life.jpg", true, true);
