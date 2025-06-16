@@ -62,7 +62,7 @@ function updateReadStatus(book, readButton) {
 }
 
 // Iterate through each book object to display card to DOM
-function displayBooks() {
+function displayAllBooks() {
     const display = document.querySelector(".display");
     const addBookCard = document.querySelector("#add-book");
     myLibrary.forEach((book) => {
@@ -151,6 +151,28 @@ function createListeners() {
             event.preventDefault();
             handleAddNewBook();
             addDialog.close();
+        }
+    });
+
+    const filterContainer = document.querySelector(".filters");
+    filterContainer.addEventListener("click", (event) => {
+        const filterType = event.target.textContent;
+        switch (filterType) {
+            case "read":
+                filterByRead(true);
+                break;
+
+            case "unread":
+                filterByRead(false);
+                break;
+
+            case "owned":
+                filterByOwned(true);
+                break;
+
+            case "unowned":
+                filterByOwned(false);
+                break;
         }
     });
 }
@@ -285,6 +307,88 @@ function handleReadToggle(readButton) {
     });
 }
 
+function filterByRead(status) {
+    clearDisplay();
+    myLibrary.forEach((book) => {
+        if (book.readStatus === status) {
+            displayBook(book);
+        }
+    });
+}
+
+function filterByOwned(status) {
+    clearDisplay();
+    myLibrary.forEach((book) => {
+        if (book.ownedStatus === status) {
+            displayBook(book);
+        }
+    });
+}
+
+function clearDisplay() {
+    const display = document.querySelector(".display");
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card) => {
+        display.removeChild(card);
+    });
+}
+
+function displayBook(book) {
+    const display = document.querySelector(".display");
+    const addBookCard = document.querySelector("#add-book");
+    // Create DOM elements for card
+    const card = document.createElement("div");
+    card.classList.add("card");
+    const title = document.createElement("h2");
+    title.classList.add("book-title");
+    const author = document.createElement("p");
+    author.classList.add("book-author");
+    const image = document.createElement("img");
+    image.classList.add("book-image");
+    const buttonWrapper = document.createElement("div");
+    buttonWrapper.classList.add("button-wrapper");
+    const ownedButton = document.createElement("button");
+    ownedButton.classList.add("toggle-button", "owned-button");
+    const readButton = document.createElement("button");
+    readButton.classList.add("toggle-button", "read-button");
+    const removeButton = document.createElement("button");
+    removeButton.classList.add("remove-button");
+    const removeIcon = document.createElement("img");
+    removeIcon.classList.add("remove-icon");
+
+    // Add id data attribute
+    card.dataset.id = book.id;
+    removeButton.dataset.id = book.id;
+    ownedButton.dataset.id = book.id;
+    readButton.dataset.id = book.id;
+
+    // Set content for card elements
+    title.textContent = book.title.toLowerCase();
+    author.textContent = `by ${book.author}`;
+    image.setAttribute("src", book.image);
+    image.setAttribute("alt", book.title);
+
+    // Add elements to card
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(image);
+
+    // Setup buttons
+    updateOwnedStatus(book, ownedButton);
+    updateReadStatus(book, readButton);
+
+    removeIcon.setAttribute("src", "icons/remove-icon.svg");
+    removeButton.appendChild(removeIcon);
+
+    buttonWrapper.appendChild(ownedButton);
+    buttonWrapper.appendChild(readButton);
+    buttonWrapper.appendChild(removeButton);
+    card.appendChild(buttonWrapper);
+
+    // Add card to display
+    display.insertBefore(card, addBookCard);
+}
+
 function populateMyLibrary() {
     addBookToLibrary("12 Rules for Life", "Jordan B. Peterson", "images/12-rules-for-life.jpg", true, true);
     addBookToLibrary("The Power of Now", "Eckhart Tolle", "images/the-power-of-now.jpeg", true, false);
@@ -300,5 +404,5 @@ function populateMyLibrary() {
 }
 
 populateMyLibrary();
-displayBooks();
+displayAllBooks();
 createListeners();
