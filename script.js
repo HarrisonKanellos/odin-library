@@ -125,22 +125,19 @@ function createListeners() {
     display.addEventListener("click", (event) => {
         const removeButton = event.target.closest(".remove-button");
         if (removeButton) {
-            handleRemove(display, removeButton);
+            handleRemove(removeButton);
         }
-
-        const addButton = event.target.closest("#add-book");
-        if (addButton) {
+        else if (event.target.closest("#add-book")) {
             openAddDialog();
         }
-        const ownedButton = event.target.closest(".owned-button");
-        if (ownedButton) {
-            handleOwnedToggle(ownedButton);
+        else if (event.target.classList.contains("owned-button")) {
+            handleOwnedToggle(event.target);
         }
-        const readButton = event.target.closest(".read-button");
-        if (readButton) {
-            handleReadToggle(readButton);
+        else if (event.target.classList.contains("read-button")) {
+            handleReadToggle(event.target);
         }
     });
+
     const buttonWrapper = document.querySelector(".form-button-wrapper");
     const addDialog = document.querySelector("#add-dialog");
     buttonWrapper.addEventListener("click", (event) => {
@@ -158,8 +155,9 @@ function createListeners() {
     });
 }
 
-function handleRemove(display, removeButton) {
+function handleRemove(removeButton) {
     const id = removeButton.dataset.id;
+    const display = document.querySelector(".display");
 
     // Remove from array
     const bookIndex = myLibrary.findIndex((book) => book.id === id);
