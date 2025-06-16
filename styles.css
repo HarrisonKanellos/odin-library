@@ -58,16 +58,19 @@ main {
 .filters-wrapper {
     width: 50%;
     padding: 0 50px;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 100px 100px 30px 100px 30px;
+    grid-template-rows: 1fr;
     align-items: center;
-    gap: 50px;
+    gap: 20px;
 }
 
 .filter-label {
     font-size: 22px;
     font-weight: bold;
     color: white;
+
+    grid-column: 1 / 2;
 }
 
 .filter-button {
@@ -82,9 +85,21 @@ main {
     background-color: lightsteelblue;
 }
 
+#read-button,
+#owned-button {
+    grid-column: 2 / 3;
+}
+
+#unread-button,
+#unowned-button {
+    grid-column: 4 / 5;
+}
+
 #clear-filter-button {
     width: 20px;
     height: 20px;
+    background-color: transparent;
+    border: none;
 }
 
 #clear-filter-button:hover,
