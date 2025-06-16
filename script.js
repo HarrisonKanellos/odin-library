@@ -159,21 +159,25 @@ function createListeners() {
         const filterType = event.target.textContent;
         switch (filterType) {
             case "read":
+                removeClearFilterButton();
                 filterByRead(true);
                 createClearFilterButton(event.target);
                 break;
 
             case "unread":
+                removeClearFilterButton();
                 filterByRead(false);
                 createClearFilterButton(event.target);
                 break;
 
             case "owned":
+                removeClearFilterButton();
                 filterByOwned(true);
                 createClearFilterButton(event.target);
                 break;
 
             case "unowned":
+                removeClearFilterButton();
                 filterByOwned(false);
                 createClearFilterButton(event.target);
                 break;
@@ -337,7 +341,9 @@ function clearDisplay() {
     const display = document.querySelector(".display");
     const cards = document.querySelectorAll(".card");
     cards.forEach((card) => {
-        display.removeChild(card);
+        if (card.id !== "add-book"){
+            display.removeChild(card);
+        }
     });
 }
 
@@ -404,10 +410,16 @@ function createClearFilterButton(selectedFilter) {
 }
 
 function handleClearFilter() {
-    const clearFilterButton = document.querySelector("#clear-filter-button");
-    clearFilterButton.remove();
+    removeClearFilterButton();
     clearDisplay();
     displayAllBooks();
+}
+
+function removeClearFilterButton() {
+    const clearFilterButton = document.querySelector("#clear-filter-button");
+    if (clearFilterButton !== null) {
+        clearFilterButton.remove();
+    }
 }
 
 function populateMyLibrary() {
