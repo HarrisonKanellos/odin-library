@@ -176,6 +176,11 @@ function createListeners() {
             case "unowned":
                 filterByOwned(false);
                 createClearFilterButton(event.target);
+                break;
+        }
+
+        if (event.target.closest("#clear-filter-button")) {
+            handleClearFilter();
         }
     });
 }
@@ -396,6 +401,13 @@ function createClearFilterButton(selectedFilter) {
     const clearFilterButton = document.createElement("button");
     clearFilterButton.setAttribute("id", "clear-filter-button");
     selectedFilter.after(clearFilterButton);
+}
+
+function handleClearFilter() {
+    const clearFilterButton = document.querySelector("#clear-filter-button");
+    clearFilterButton.remove();
+    clearDisplay();
+    displayAllBooks();
 }
 
 function populateMyLibrary() {

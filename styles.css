@@ -82,6 +82,16 @@ main {
     background-color: lightsteelblue;
 }
 
+#clear-filter-button {
+    width: 20px;
+    height: 20px;
+}
+
+#clear-filter-button:hover,
+#clear-filter-button:active {
+    background-color: red;
+}
+
 .display {
     padding: 30px 150px;
     display: grid;
