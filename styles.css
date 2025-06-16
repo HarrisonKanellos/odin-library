@@ -46,7 +46,7 @@ main {
     border: 7px solid grey;
 }
 
-.sorting {
+.filters {
     width: 100%;
     padding: 15px 50px;
     background-color: grey;
@@ -55,7 +55,7 @@ main {
     justify-content: space-evenly;
 }
 
-.sort-wrapper {
+.filters-wrapper {
     width: 50%;
     padding: 0 50px;
     display: flex;
@@ -63,11 +63,11 @@ main {
     align-items: center;
 }
 
-.sort-label {
+.filter-label {
     font-size: 22px;
 }
 
-.sort-button {
+.filter-button {
     font-size: 18px;
     font-weight: bold;
     padding: 5px 10px;
@@ -75,7 +75,7 @@ main {
     background-color: white;
 }
 
-.sort-button:hover {
+.filter-button:hover {
     background-color: lightslategrey;
 }
 
