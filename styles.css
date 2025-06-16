@@ -40,6 +40,7 @@ h1 {
     font-size: 40px;
     color: whitesmoke;
     text-align: center;
+    line-height: 1.6em;
 }
 
 .top-bar {
@@ -138,11 +139,11 @@ main {
 }
 
 .display {
-    padding: 80px 150px;
+    padding: 80px 175px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 50px;
+    gap: 50px 100px;
     height: calc(100% - 80px); 
     overflow-y: auto;
 }
