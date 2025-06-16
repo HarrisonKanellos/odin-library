@@ -114,6 +114,7 @@ function createListeners() {
     buttonWrapper.addEventListener("click", (event) => {
         const id = event.target.getAttribute("id");
         if (id === "cancel-button") {
+            clearFields();
             addDialog.close();
         }
 
@@ -144,17 +145,33 @@ function openAddDialog() {
 }
 
 function handleAddNewBook() {
-    const bookInput = document.querySelector("#book-name").value;
-    const bookName = bookInput.toLowerCase();
-    const authorInput = document.querySelector("#author").value;
-    const author = capitalizeAuthor(authorInput);
+    const bookRaw = document.querySelector("#book-name").value;
+    const bookName = bookRaw.toLowerCase();
+    const authorRaw = document.querySelector("#author").value;
+    const author = capitalizeAuthor(authorRaw);
     const imageObj = document.querySelector("#image-file").files[0];
     const image = URL.createObjectURL(imageObj);
     const ownedStatus = document.querySelector("#owned-status").checked;
     const readStatus = document.querySelector("#read-status").checked;
 
+    clearFields();
+
     addBookToLibrary(bookName, author, image, ownedStatus, readStatus);
     displayNewBook();
+}
+
+function clearFields() {
+    const bookInput = document.querySelector("#book-name");
+    const authorInput = document.querySelector("#author");
+    const imageFilePicker = document.querySelector("#image-file");
+    const ownedCheckbox = document.querySelector("#owned-status");
+    const readCheckbox = document.querySelector("#read-status");
+
+    bookInput.value = "";
+    authorInput.value = "";
+    imageFilePicker.value = "";
+    ownedCheckbox.checked = false;
+    readCheckbox.checked = false;
 }
 
 function displayNewBook() {
