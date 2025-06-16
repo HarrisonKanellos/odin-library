@@ -61,6 +61,7 @@ main {
     display: grid;
     grid-template-columns: 100px 100px 30px 100px 30px;
     grid-template-rows: 1fr;
+    justify-content: center;
     align-items: center;
     gap: 20px;
 }
@@ -83,6 +84,11 @@ main {
 
 .filter-button:hover {
     background-color: lightsteelblue;
+}
+
+.selected-filter {
+    background-color: olivedrab;
+    color: white;
 }
 
 #read-button,

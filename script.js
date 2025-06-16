@@ -61,6 +61,30 @@ function updateReadStatus(book, readButton) {
     }
 }
 
+function updateFilterStyle(selectedButton) {
+    const selectedID = selectedButton.getAttribute("id")
+    const filterButtons = document.querySelectorAll(".filter-button");
+
+    if (selectedID === "clear-filter-button") {
+        filterButtons.forEach((button) => button.classList.remove("selected-filter"));
+    }
+
+    else {
+    filterButtons.forEach((button) => {
+        const buttonID = button.getAttribute("id");
+        const selectedID = selectedButton.getAttribute("id")
+
+        if (buttonID === selectedID && !(button.classList.contains("selected-filter"))) {
+            button.classList.add("selected-filter");
+        }
+        else if (buttonID !== selectedID && button.classList.contains("selected-filter")) {
+            button.classList.remove("selected-filter");
+        }
+
+    })
+    }
+}
+
 // Iterate through each book object to display card to DOM
 function displayAllBooks() {
     const display = document.querySelector(".display");
@@ -161,29 +185,34 @@ function createListeners() {
             case "read":
                 removeClearFilterButton();
                 filterByRead(true);
+                updateFilterStyle(event.target);
                 createClearFilterButton(event.target);
                 break;
 
             case "unread":
                 removeClearFilterButton();
                 filterByRead(false);
+                updateFilterStyle(event.target);
                 createClearFilterButton(event.target);
                 break;
 
             case "owned":
                 removeClearFilterButton();
                 filterByOwned(true);
+                updateFilterStyle(event.target);
                 createClearFilterButton(event.target);
                 break;
 
             case "unowned":
                 removeClearFilterButton();
                 filterByOwned(false);
+                updateFilterStyle(event.target);
                 createClearFilterButton(event.target);
                 break;
         }
 
         if (event.target.closest("#clear-filter-button")) {
+            updateFilterStyle(event.target);
             handleClearFilter();
         }
     });
