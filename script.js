@@ -160,19 +160,22 @@ function createListeners() {
         switch (filterType) {
             case "read":
                 filterByRead(true);
+                createClearFilterButton(event.target);
                 break;
 
             case "unread":
                 filterByRead(false);
+                createClearFilterButton(event.target);
                 break;
 
             case "owned":
                 filterByOwned(true);
+                createClearFilterButton(event.target);
                 break;
 
             case "unowned":
                 filterByOwned(false);
-                break;
+                createClearFilterButton(event.target);
         }
     });
 }
@@ -387,6 +390,12 @@ function displayBook(book) {
 
     // Add card to display
     display.insertBefore(card, addBookCard);
+}
+
+function createClearFilterButton(selectedFilter) {
+    const clearFilterButton = document.createElement("button");
+    clearFilterButton.setAttribute("id", "clear-filter-button");
+    selectedFilter.after(clearFilterButton);
 }
 
 function populateMyLibrary() {
