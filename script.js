@@ -113,6 +113,12 @@ function createListeners() {
 
 function handleRemove(display, removeButton) {
     const id = removeButton.dataset.id;
+
+    // Remove from array
+    const bookIndex = myLibrary.findIndex((book) => book.id === id);
+    myLibrary.splice(bookIndex, 1);
+
+    // Remove from dom
     const card = document.querySelector(`.card[data-id="${id}"]`)
     display.removeChild(card);
 }
