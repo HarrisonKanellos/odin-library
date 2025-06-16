@@ -406,6 +406,12 @@ function displayBook(book) {
 function createClearFilterButton(selectedFilter) {
     const clearFilterButton = document.createElement("button");
     clearFilterButton.setAttribute("id", "clear-filter-button");
+    const clearIcon = document.createElement("img");
+
+    clearIcon.classList.add("clear-icon");
+    clearIcon.setAttribute("src", "icons/remove-icon.svg");
+
+    clearFilterButton.appendChild(clearIcon);
     selectedFilter.after(clearFilterButton);
 }
 
