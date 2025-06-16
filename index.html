@@ -37,7 +37,7 @@
         <dialog id="add-dialog" closedby="any">
             <div class="dialog-content">
                 <h2 class="add-book-title">ADD A BOOK</h2>
-                <form formtype="dialog" id="add-book-form">
+                <form id="add-book-form" method="dialog">
                     <fieldset class="text-inputs">
                         <label for="book-name">book name</label>
                         <input type="text" name="book-name" id="book-name" autofocus/>
@@ -59,7 +59,7 @@
                     </fieldset>
                     <div class="form-button-wrapper">
                         <button type="button" class="form-button" id="cancel-button">cancel</button>
-                        <button type="submit" formmethod="dialog" class="form-button" id="add-button">add</button>
+                        <button type="submit" class="form-button" id="add-button">add</button>
                     </div>
                 </form>
             </div>

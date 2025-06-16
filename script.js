@@ -120,6 +120,7 @@ function createListeners() {
         else if (id === "add-button") {
             event.preventDefault();
             handleAddNewBook();
+            addDialog.close();
         }
     })
     
