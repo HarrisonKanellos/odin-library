@@ -59,12 +59,15 @@ main {
     width: 50%;
     padding: 0 50px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
+    gap: 50px;
 }
 
 .filter-label {
     font-size: 22px;
+    font-weight: bold;
+    color: white;
 }
 
 .filter-button {
@@ -76,7 +79,7 @@ main {
 }
 
 .filter-button:hover {
-    background-color: lightslategrey;
+    background-color: lightsteelblue;
 }
 
 .display {
@@ -181,7 +184,7 @@ main {
     font-weight: bold;
 }
 
-.sort-button,
+.filter-button,
 .toggle-button,
 .remove-button,
 #add-book,
