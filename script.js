@@ -106,9 +106,23 @@ function createListeners() {
 
         const addButton = event.target.closest("#add-book");
         if (addButton) {
-            handleAdd();
+            openAddDialog();
         }
     })
+    const buttonWrapper = document.querySelector(".form-button-wrapper");
+    const addDialog = document.querySelector("#add-dialog");
+    buttonWrapper.addEventListener("click", (event) => {
+        const id = event.target.getAttribute("id");
+        if (id === "cancel-button") {
+            addDialog.close();
+        }
+
+        else if (id === "add-button") {
+            event.preventDefault();
+            handleAddNewBook();
+        }
+    })
+    
 }
 
 function handleRemove(display, removeButton) {
@@ -123,23 +137,9 @@ function handleRemove(display, removeButton) {
     display.removeChild(card);
 }
 
-function handleAdd() {
+function openAddDialog() {
     const addDialog = document.querySelector("#add-dialog");
-    const buttonWrapper = document.querySelector(".form-button-wrapper");
-
     addDialog.showModal();
-
-    buttonWrapper.addEventListener("click", (event) => {
-        const id = event.target.getAttribute("id");
-        if (id === "cancel-button") {
-            addDialog.close();
-        }
-
-        else if (id === "add-button") {
-            event.preventDefault();
-            handleAddNewBook();
-        }
-    })
 }
 
 function handleAddNewBook() {
