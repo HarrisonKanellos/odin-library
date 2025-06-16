@@ -9,6 +9,24 @@ function Book(title, author, image, ownedStatus, readStatus) {
     this.readStatus = readStatus;
 }
 
+// Prototype function to toggle book status
+Book.prototype.toggleOwnedStatus = function() {
+    if (this.ownedStatus) {
+        this.ownedStatus = false;
+    }
+    else {
+        this.ownedStatus = true;
+    }
+};
+Book.prototype.toggleReadStatus = function() {
+    if (this.readStatus) {
+        this.readStatus = false;
+    }
+    else {
+        this.readStatus = true;
+    }
+};
+
 // Creates a new book, then adds to myLibrary array
 function addBookToLibrary(title, author, image, ownedStatus, readStatus) {
     let book = new Book(title, author, image, ownedStatus, readStatus);
@@ -18,10 +36,12 @@ function addBookToLibrary(title, author, image, ownedStatus, readStatus) {
 // Sets text and color based on owned status
 function updateOwnedStatus(book, ownedButton) {
     if (book.ownedStatus) {
+        ownedButton.classList.remove("unowned");
         ownedButton.textContent = "owned";
         ownedButton.classList.add("owned");
     }
     else {
+        ownedButton.classList.remove("owned");
         ownedButton.textContent = "unowned";
         ownedButton.classList.add("unowned");
     }
@@ -30,10 +50,12 @@ function updateOwnedStatus(book, ownedButton) {
 // Sets text and color based on read status
 function updateReadStatus(book, readButton) {
     if (book.readStatus) {
+        readButton.classList.remove("unread");
         readButton.textContent = "read";
         readButton.classList.add("read");
     }
     else {
+        readButton.classList.remove("read");
         readButton.textContent = "unread";
         readButton.classList.add("unread");
     }
@@ -67,6 +89,8 @@ function displayBooks() {
         // Add id data attribute
         card.dataset.id = book.id;
         removeButton.dataset.id = book.id;
+        ownedButton.dataset.id = book.id;
+        readButton.dataset.id = book.id;
 
         // Set content for card elements
         title.textContent = book.title.toLowerCase();
@@ -93,7 +117,7 @@ function displayBooks() {
 
         // Add card to display
         display.insertBefore(card, addBookCard);
-    })
+    });
 }
 
 function createListeners() {
@@ -108,7 +132,15 @@ function createListeners() {
         if (addButton) {
             openAddDialog();
         }
-    })
+        const ownedButton = event.target.closest(".owned-button");
+        if (ownedButton) {
+            handleOwnedToggle(ownedButton);
+        }
+        const readButton = event.target.closest(".read-button");
+        if (readButton) {
+            handleReadToggle(readButton);
+        }
+    });
     const buttonWrapper = document.querySelector(".form-button-wrapper");
     const addDialog = document.querySelector("#add-dialog");
     buttonWrapper.addEventListener("click", (event) => {
@@ -123,8 +155,7 @@ function createListeners() {
             handleAddNewBook();
             addDialog.close();
         }
-    })
-    
+    });
 }
 
 function handleRemove(display, removeButton) {
@@ -234,6 +265,26 @@ function capitalizeAuthor(author) {
     return author.split(" ")
                 .map((word) => word[0].toUpperCase() + word.slice(1).toLowerCase())
                 .join(" ");
+}
+
+function handleOwnedToggle(ownedButton) {
+    const id = ownedButton.dataset.id;
+    myLibrary.forEach((book) => {
+        if (book.id === id) {
+            book.toggleOwnedStatus();
+            updateOwnedStatus(book, ownedButton);
+        }
+    });
+}
+
+function handleReadToggle(readButton) {
+    const id = readButton.dataset.id;
+    myLibrary.forEach((book) => {
+        if (book.id === id) {
+            book.toggleReadStatus();
+            updateReadStatus(book, readButton);
+        }
+    });
 }
 
 function populateMyLibrary() {
