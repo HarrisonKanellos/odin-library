@@ -43,11 +43,11 @@
                 <form id="add-book-form" method="dialog">
                     <fieldset class="text-inputs">
                         <label for="book-name">book name</label>
-                        <input type="text" name="book-name" id="book-name" autofocus/>
+                        <input type="text" name="book-name" id="book-name" autofocus maxLength="25" required/>
                         <label for="author">author</label>
-                        <input type="text" name="author" id="author" />
+                        <input type="text" name="author" id="author" minLength="5" maxLength="35" required/>
                         <label for="image-file">image</label>
-                        <input type="file" name="image-file" id="image-file" accept="image/png, image/jpg image/jpeg" />
+                        <input type="file" name="image-file" id="image-file" accept="image/png, image/jpg image/jpeg" required/>
                     </fieldset>
                     <fieldset class="checkbox-inputs">
                         <legend class="checkbox-inputs-text">select owned and read status:</legend>
