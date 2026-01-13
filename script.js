@@ -75,6 +75,7 @@ class DisplayController {
                 this.handleRemove(removeButton);
             }
             else if (event.target.closest("#add-book")) {
+                this.addModalInputEvents();
                 this.openAddDialog();
             }
             else if (event.target.classList.contains("owned-button")) {
@@ -91,12 +92,21 @@ class DisplayController {
             const id = event.target.getAttribute("id");
             if (id === "cancel-button") {
                 this.clearFields();
+                this.removeModalInputEvents();
                 addDialog.close();
             }
     
             else if (id === "add-button") {
                 event.preventDefault();
+
+                if (!this.submitIsValid(this.nameIsValid, 
+                                        this.authorIsValid, 
+                                        this.imageIsValid)) {
+                    return;
+                }
+
                 this.handleAddNewBook();
+                this.removeModalInputEvents();
                 addDialog.close();
             }
         });
@@ -261,9 +271,140 @@ class DisplayController {
         display.removeChild(card);
     }
 
+    addModalInputEvents() {
+        const nameInput = document.querySelector("#book-name");
+        const authorInput = document.querySelector("#author");
+        const imageInput = document.querySelector("#image-file");
+        const submitButton = document.querySelector("#add-button");
+    
+        nameInput.addEventListener("input", this.handleNameInput);
+        authorInput.addEventListener("input", this.handleAuthorInput);
+        imageInput.addEventListener("input", this.handleImageInput);
+        submitButton.addEventListener("submit", this.handleSubmission)
+    }
+
+    removeModalInputEvents() {
+        const nameInput = document.querySelector("#book-name");
+        const authorInput = document.querySelector("#author");
+        const imageInput = document.querySelector("#image-file");
+    
+        nameInput.removeEventListener("input", this.handleNameInput);
+        authorInput.removeEventListener("input", this.handleAuthorInput);
+        imageInput.removeEventListener("input", this.handleImageInput);
+    }
+
     openAddDialog() {
         const addDialog = document.querySelector("#add-dialog");
         addDialog.showModal();
+    }
+
+    handleNameInput() {
+        const nameInput = document.querySelector("#book-name");
+
+        if (nameInput.validity.tooLong) {
+            nameInput.setCustomValidity(`Book name cannot be longer than ${nameInput.maxLength} characters.
+                Currently: ${nameInput.value.length} characters`);
+        } else {
+            nameInput.setCustomValidity("");
+        }
+        nameInput.reportValidity();
+    }
+
+    handleAuthorInput() {
+        const authorInput = document.querySelector("#author");
+
+        if (authorInput.validity.tooShort) {
+            authorInput.setCustomValidity(`Author cannot be shorter than ${authorInput.minLength} characters.
+                Currently: ${authorInput.value.length} characters`);
+        } else if (authorInput.validity.tooLong) {
+            authorInput.setCustomValidity(`Author cannot be longer than ${authorInput.maxLength} characters.
+                Currently: ${authorInput.value.length} characters`);
+        } else {
+            authorInput.setCustomValidity("");
+        }
+        authorInput.reportValidity();
+    }
+
+    handleImageInput() {
+        const imageInput = document.querySelector("#image-file");
+        const imageFile = imageInput.files;
+
+        if (imageFile.length > 0) {
+            if (imageFile[0].size > 5 * 1000 * 1000) {
+                imageInput.setCustomValidity("Image file size cannot exceed 5 MB.");
+            } else {
+                imageInput.setCustomValidity("");
+            }
+            imageInput.reportValidity();
+        }
+    }
+
+    submitIsValid(nameIsValid, authorIsValid, imageIsValid) {
+        return nameIsValid() && authorIsValid() && imageIsValid();
+    }
+
+    nameIsValid() {
+        const nameInput = document.querySelector("#book-name");
+        
+        if (nameInput.validity.valueMissing) {
+            nameInput.setCustomValidity("Name of book missing. Enter the name of your book.");
+            nameInput.reportValidity();
+            return false;
+        } else if (nameInput.validity.tooLong) {
+            nameInput.setCustomValidity(`Book name cannot be longer than ${nameInput.maxLength} characters.
+                Currently: ${nameInput.value.length} characters`);
+            nameInput.reportValidity();
+            return false;
+        } else {
+            nameInput.setCustomValidity("");
+            nameInput.reportValidity();
+            return true;
+        }
+    }
+
+    authorIsValid() {
+        const authorInput = document.querySelector("#author");
+
+        if (authorInput.validity.valueMissing) {
+            authorInput.setCustomValidity("Name of author missing. Enter the name of the author.");
+            authorInput.reportValidity();
+            return false;
+        } else if (authorInput.validity.tooShort) {
+            authorInput.setCustomValidity(`Author cannot be shorter than ${authorInput.minLength} characters.
+                Currently: ${authorInput.value.length} characters`);
+            authorInput.reportValidity();
+            return false;
+        } else if (authorInput.validity.tooLong) {
+            authorInput.setCustomValidity(`Author cannot be longer than ${authorInput.maxLength} characters.
+                Currently: ${authorInput.value.length} characters`);
+            authorInput.reportValidity();
+            return false;
+        } else {
+            authorInput.setCustomValidity("");
+            authorInput.reportValidity();
+            return true;
+        }
+    }
+
+    imageIsValid() {
+        const imageInput = document.querySelector("#image-file");
+        const imageFile = imageInput.files;
+
+        if (imageFile.length > 0) {
+            if (imageFile[0].size > 5 * 1000 * 1000) {
+                imageInput.setCustomValidity("Image file size cannot exceed 5 MB.");
+                imageInput.reportValidity();
+                return false;
+            } else {
+                imageInput.setCustomValidity("");
+                imageInput.reportValidity();
+                return true;
+            }
+        } else {
+            imageInput.setCustomValidity("Image required. Select an image.")
+            imageInput.reportValidity();
+            return false;
+        }
     }
 
     handleAddNewBook() {
